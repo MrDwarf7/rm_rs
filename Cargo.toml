@@ -1,0 +1,61 @@
+[package]
+name = "rm_rs"
+version = "0.1.0"
+edition = "2021"
+
+# For running the main server as a watch call
+# cargo watch -q -c -w src/ -x run
+
+
+[dependencies]
+clap = { version = "4.5.16", features = ["derive", "env"] }
+# Base dependencies/Commons
+log = "0.4.21"
+thiserror = "1.0.61"
+walkdir = "2.5.0"
+
+# reqwest = { version = "0.12.4", features = ["cookies", "json", "multipart", "stream"] }
+# tokio = { version = "1.9.0", features = ["full", "tracing"] }
+# tokio-util = { version = "0.7.11", features = ["codec"] }
+# futures = "0.3.30"
+# serde = { rm_rsversion = "1.0.203", features = ["derive"] }
+# serde_json = "1.0.117"
+# toml = "0.8.14"
+
+# Logging and tracing
+# tracing = "0.1.40"
+# tracing-subscriber = { version = "0.3.18", features = ["ansi", "env-filter", "std"] }
+
+# Helpers
+# async-trait = "0.1.80"
+# dotenv_codegen = "0.15.0"
+# dotenv = "0.15.0"
+# static-toml = "1.2.0"
+
+# Utilities - Try and remove/code out
+# walkdir = "2.5.0"
+# chrono = "0.4.9"
+# itertools = "0.13.0"
+
+
+[profile.dev.package."*"]
+opt-level = 3
+codegen-units = 1
+
+
+[profile.dev]
+opt-level = 1
+codegen-units = 256
+incremental = true
+
+
+[profile.release]
+opt-level = 3
+codegen-units = 1
+debug = "none"
+# strip = "symbols" # Leave off @ w
+debug-assertions = false
+incremental = true
+
+lto = "fat"
+# panic = "unwind"
